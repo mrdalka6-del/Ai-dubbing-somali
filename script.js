@@ -17,7 +17,7 @@ let response=await fetch("https://api.openai.com/v1/audio/transcriptions",{
 method:"POST",
 
 headers:{
-"Authorization":"Bearer YOUR_API_KEY"
+"Authorization":" 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 "
 },
 
 body:formData
