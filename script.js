@@ -1,5 +1,4 @@
-
-async function upload(){
+async function start(){
 
 let file=document.getElementById("video").files[0]
 
@@ -8,17 +7,25 @@ alert("Video geli")
 return
 }
 
-document.getElementById("status").innerText="AI ayaa shaqeynaya..."
+document.getElementById("status").innerText="Video waa la upload gareynayaa..."
 
-let form=new FormData()
-form.append("video",file)
+let formData=new FormData()
+formData.append("file",file)
 
-let res=await fetch("/dub",{method:"POST",body:form})
+let response=await fetch("https://api.openai.com/v1/audio/transcriptions",{
 
-let data=await res.json()
+method:"POST",
 
-document.getElementById("status").innerText="Dubbing waa diyaar"
+headers:{
+"Authorization":"Bearer YOUR_API_KEY"
+},
 
-window.open(data.video)
+body:formData
+
+})
+
+let data=await response.json()
+
+document.getElementById("status").innerText="Hadalka waa la turjumay: "+data.text
 
 }
